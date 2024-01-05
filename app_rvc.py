@@ -43,31 +43,31 @@ news = """ ## 📖 News
         """
 
 description = """
-### 🎥 **Translate videos easily with SoniTranslate!** 📽️
+### 🎥 **Переводите ваши видео используя АИ!** 📽️
 
-Upload a video or provide a video link. 📽️ **Gets the updated notebook from the official repository.: [SoniTranslate](https://github.com/R3gm/SoniTranslate)!**
+Загрузите ваш видеофайл или используйте ссылку на Youtube. 📽️ **Обнавляйте ваш переводчик на гитхабе.: [RUAITranslator](https://github.com/Slyfoxleo/RUAItranslator)!**
 
-See the tab labeled `Help` for instructions on how to use it. Let's start having fun with video translation! 🚀🎉
+Инструкция по использованию вы найдете в разделе `Помощь`. Хорошего настроения, и удачного использования! 🚀🎉
 """
 
 
 
 tutorial = """
 
-# 🔰 **Instructions for use:**
+# 🔰 **Инструкция по использованию:**
 
-1. 📤 **Upload a video** on the first tab or 🌐 **use a video link** on the second tab.
+1. 📤 **Загрузить видео** на первой вкладке вы можете загрузить ваше видео🌐 **используя ссылку** для дальнейшего перевода.
 
-2. 🌍 Choose the language in which you want to **translate the video**.
+2. 🌍 Сделайте выбор языка, с которого нужно переводить и на **язык перевода**.
 
-3. 🗣️ Specify the **number of people speaking** in the video and **assign each one a text-to-speech voice** suitable for the translation language.
+3. 🗣️ Введите **количество человек** в используемом видео **для дальнейшего перевода** на ваш язык.
 
-4. 🚀 Press the '**Translate**' button to obtain the results.
+4. 🚀 Нажмите кнопку '**Перевод**' для получения перевода.
 
 
-# 🎤 How to Use R.V.C. and R.V.C.2 Voices (Optional) 🎶
+# 🎤 Как использовать R.V.C. и R.V.C.2 модели для замены голоса (Опционально) 🎶
 
-The goal is to apply a R.V.C. to the generated TTS (Text-to-Speech) 🎙️
+Для использования R.V.C. программа генерирует аудиофайлы используя TTS (Text-to-Speech) 🎙️
 
 1. In the `Custom Voice R.V.C.` tab, download the models you need 📥 You can use links from Hugging Face and Google Drive in formats like zip, pth, or index. You can also download complete HF space repositories, but this option is not very stable 😕
 
