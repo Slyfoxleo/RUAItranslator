@@ -764,7 +764,7 @@ with gr.Blocks(theme=theme) as demo:
     gr.Markdown(description)
 
 #### video
-    with gr.Tab("Audio Translation for a Video"):
+    with gr.Tab("Перевод используя видеофайл"):
         with gr.Row():
             with gr.Column():
                 #video_input = gr.UploadButton("Click to Upload a video", file_types=["video"], file_count="single") #gr.Video() # height=300,width=300
@@ -772,21 +772,21 @@ with gr.Blocks(theme=theme) as demo:
                 #link = gr.HTML()
                 #video_input.change(submit_file_func, video_input, [video_input, link], show_progress='full')
 
-                SOURCE_LANGUAGE = gr.Dropdown(['Automatic detection', 'Arabic (ar)', 'Chinese (zh)', 'Czech (cs)', 'Danish (da)', 'Dutch (nl)', 'English (en)', 'Finnish (fi)', 'French (fr)', 'German (de)', 'Greek (el)', 'Hebrew (he)', 'Hindi (hi)', 'Hungarian (hu)', 'Italian (it)', 'Japanese (ja)', 'Korean (ko)', 'Persian (fa)', 'Polish (pl)', 'Portuguese (pt)', 'Russian (ru)', 'Spanish (es)', 'Turkish (tr)', 'Ukrainian (uk)', 'Urdu (ur)', 'Vietnamese (vi)'], value='Automatic detection',label = 'Source language', info="This is the original language of the video")
-                TRANSLATE_AUDIO_TO = gr.Dropdown(['Arabic (ar)', 'Chinese (zh)', 'Czech (cs)', 'Danish (da)', 'Dutch (nl)', 'English (en)', 'Finnish (fi)', 'French (fr)', 'German (de)', 'Greek (el)', 'Hebrew (he)', 'Hindi (hi)', 'Hungarian (hu)', 'Italian (it)', 'Japanese (ja)', 'Korean (ko)', 'Persian (fa)', 'Polish (pl)', 'Portuguese (pt)', 'Russian (ru)', 'Spanish (es)', 'Turkish (tr)', 'Ukrainian (uk)', 'Urdu (ur)', 'Vietnamese (vi)'], value='English (en)',label = 'Translate audio to', info="Select the target language, and make sure to select the language corresponding to the speakers of the target language to avoid errors in the process.")
+                SOURCE_LANGUAGE = gr.Dropdown(['Определить автоматически', 'Арабский (ar)', 'Китайский (zh)', 'Чешский (cs)', 'Датский (da)', 'Нидерландский (nl)', 'Английский (en)', 'Финский (fi)', 'Француский (fr)', 'Немецский (de)', 'Грецский (el)', 'Иврит (he)', 'Индийский (hi)', 'Болгарский (hu)', 'Итальянский (it)', 'Японский (ja)', 'Корейский (ko)', 'Иранский (fa)', 'Польский (pl)', 'Португальский (pt)', 'Русский (ru)', 'Испанский (es)', 'Турецкий (tr)', 'Украинский (uk)', 'Австралийский (ur)', 'Вьетнамский (vi)'], value='Определить автоматически',label = 'Язык в видео', info="Язык используемый в видео, оригинальный")
+                TRANSLATE_AUDIO_TO = gr.Dropdown(['Арабский (ar)', 'Китайский (zh)', 'Чешский (cs)', 'Датский (da)', 'Нидерландский (nl)', 'Английский (en)', 'Финский (fi)', 'Француский (fr)', 'Немецский (de)', 'Грецский (el)', 'Иврит (he)', 'Индийский (hi)', 'Болгарский (hu)', 'Итальянский (it)', 'Японский (ja)', 'Корейский (ko)', 'Иранский (fa)', 'Польский (pl)', 'Португальский (pt)', 'Русский (ru)', 'Испанский (es)', 'Турецкий (tr)', 'Украинский (uk)', 'Австралийский (ur)', 'Вьетнамский (vi)'], value='Русский (ru)',label = 'Перевод на язык', info="Выберите язык на который вы будете делать перевод.")
 
                 line_ = gr.HTML("<hr></h2>")
-                gr.Markdown("Select how many people are speaking in the video.")
+                gr.Markdown("Какое количество человек разговаривает в видео.")
                 min_speakers = gr.Slider(1, MAX_TTS, default=1, label="min_speakers", step=1, visible=False)
                 max_speakers = gr.Slider(1, MAX_TTS, value=2, step=1, label="Max speakers", interative=True)
-                gr.Markdown("Select the voice you want for each speaker.")
+                gr.Markdown("Выберите модель диктора используемого в видео.")
                 def submit(value):
                     visibility_dict = {
                         f'tts_voice{i:02d}': gr.update(visible=i < value) for i in range(6)
                     }
                     return [value for value in visibility_dict.values()]
-                tts_voice00 = gr.Dropdown(list_tts, value='en-AU-WilliamNeural-Male', label = 'TTS Speaker 1', visible=True, interactive= True)
-                tts_voice01 = gr.Dropdown(list_tts, value='en-CA-ClaraNeural-Female', label = 'TTS Speaker 2', visible=True, interactive= True)
+                tts_voice00 = gr.Dropdown(list_tts, value='ru-RU-DmitryNeural-Male', label = 'TTS Speaker 1', visible=True, interactive= True)
+                tts_voice01 = gr.Dropdown(list_tts, value='ru-RU-SvetlanaNeural-Female', label = 'TTS Speaker 2', visible=True, interactive= True)
                 tts_voice02 = gr.Dropdown(list_tts, value='en-GB-ThomasNeural-Male', label = 'TTS Speaker 3', visible=False, interactive= True)
                 tts_voice03 = gr.Dropdown(list_tts, value='en-GB-SoniaNeural-Female', label = 'TTS Speaker 4', visible=False, interactive= True)
                 tts_voice04 = gr.Dropdown(list_tts, value='en-NZ-MitchellNeural-Male', label = 'TTS Speaker 5', visible=False, interactive= True)
@@ -795,7 +795,7 @@ with gr.Blocks(theme=theme) as demo:
 
                 with gr.Column():
                       with gr.Accordion("Advanced Settings", open=False):
-                          audio_accelerate = gr.Slider(label = 'Max Audio acceleration', value=2.1, step=0.1, minimum=1.0, maximum=2.5, visible=True, interactive= True, info="Maximum acceleration for translated audio segments to avoid overlapping. A value of 1.0 represents no acceleration")
+                          audio_accelerate = gr.Slider(label = 'Max Audio acceleration', value=1.3, step=0.1, minimum=1.0, maximum=2.5, visible=True, interactive= True, info="Maximum acceleration for translated audio segments to avoid overlapping. A value of 1.0 represents no acceleration")
 
                           AUDIO_MIX = gr.Dropdown(['Mixing audio with sidechain compression', 'Adjusting volumes and mixing audio'], value='Adjusting volumes and mixing audio', label = 'Audio Mixing Method', info="Mix original and translated audio files to create a customized, balanced output with two available mixing modes.")
                           volume_original_mix = gr.Slider(label = 'Volume original audio', info='for <Adjusting volumes and mixing audio>', value=0.25, step=0.05, minimum=0.0, maximum=2.50, visible=True, interactive= True,)
@@ -895,26 +895,25 @@ with gr.Blocks(theme=theme) as demo:
 
 ### link
 
-    with gr.Tab("Audio Translation via Video Link"):
+    with gr.Tab("Перевод используя видеолинк"):
         with gr.Row():
             with gr.Column():
 
-                blink_input = gr.Textbox(label="Media link.", info="Example: www.youtube.com/watch?v=g_9rPvbENUw", placeholder="URL goes here...")
+                blink_input = gr.Textbox(label="Ссылка на видео.", info="Например: www.youtube.com/watch?v=g_9rPvbENUw", placeholder="Ссылка на видео...")
 
-                bSOURCE_LANGUAGE = gr.Dropdown(['Automatic detection', 'Arabic (ar)', 'Chinese (zh)', 'Czech (cs)', 'Danish (da)', 'Dutch (nl)', 'English (en)', 'Finnish (fi)', 'French (fr)', 'German (de)', 'Greek (el)', 'Hebrew (he)', 'Hindi (hi)', 'Hungarian (hu)', 'Italian (it)', 'Japanese (ja)', 'Korean (ko)', 'Persian (fa)', 'Polish (pl)', 'Portuguese (pt)', 'Russian (ru)', 'Spanish (es)', 'Turkish (tr)', 'Ukrainian (uk)', 'Urdu (ur)', 'Vietnamese (vi)'], value='Automatic detection',label = 'Source language', info="This is the original language of the video")
-                bTRANSLATE_AUDIO_TO = gr.Dropdown(['Arabic (ar)', 'Chinese (zh)', 'Czech (cs)', 'Danish (da)', 'Dutch (nl)', 'English (en)', 'Finnish (fi)', 'French (fr)', 'German (de)', 'Greek (el)', 'Hebrew (he)', 'Hindi (hi)', 'Hungarian (hu)', 'Italian (it)', 'Japanese (ja)', 'Korean (ko)', 'Persian (fa)', 'Polish (pl)', 'Portuguese (pt)', 'Russian (ru)', 'Spanish (es)', 'Turkish (tr)', 'Ukrainian (uk)', 'Urdu (ur)', 'Vietnamese (vi)'], value='English (en)',label = 'Translate audio to', info="Select the target language, and make sure to select the language corresponding to the speakers of the target language to avoid errors in the process.")
-
+                bSOURCE_LANGUAGE = gr.Dropdown(['Определить автоматически', 'Арабский (ar)', 'Китайский (zh)', 'Чешский (cs)', 'Датский (da)', 'Нидерландский (nl)', 'Английский (en)', 'Финский (fi)', 'Француский (fr)', 'Немецский (de)', 'Грецский (el)', 'Иврит (he)', 'Индийский (hi)', 'Болгарский (hu)', 'Итальянский (it)', 'Японский (ja)', 'Корейский (ko)', 'Иранский (fa)', 'Польский (pl)', 'Португальский (pt)', 'Русский (ru)', 'Испанский (es)', 'Турецкий (tr)', 'Украинский (uk)', 'Австралийский (ur)', 'Вьетнамский (vi)'], value='Определить автоматически',label = 'Язык в видео', info="Язык используемый в видео, оригинальный")
+                bTRANSLATE_AUDIO_TO = gr.Dropdown(['Арабский (ar)', 'Китайский (zh)', 'Чешский (cs)', 'Датский (da)', 'Нидерландский (nl)', 'Английский (en)', 'Финский (fi)', 'Француский (fr)', 'Немецский (de)', 'Грецский (el)', 'Иврит (he)', 'Индийский (hi)', 'Болгарский (hu)', 'Итальянский (it)', 'Японский (ja)', 'Корейский (ko)', 'Иранский (fa)', 'Польский (pl)', 'Португальский (pt)', 'Русский (ru)', 'Испанский (es)', 'Турецкий (tr)', 'Украинский (uk)', 'Австралийский (ur)', 'Вьетнамский (vi)'], value='Русский (ru)',label = 'Перевод на язык', info="Выберите язык на который вы будете делать перевод.")
                 bline_ = gr.HTML("<hr></h2>")
-                gr.Markdown("Select how many people are speaking in the video.")
+                gr.Markdown("Сколько человек разговаривает на видео.")
                 bmin_speakers = gr.Slider(1, MAX_TTS, default=1, label="min_speakers", step=1, visible=False)
                 bmax_speakers = gr.Slider(1, MAX_TTS, value=2, step=1, label="Max speakers", interative=True)
-                gr.Markdown("Select the voice you want for each speaker.")
+                gr.Markdown("Выберите модель диктора(Мужской, женский).")
                 def bsubmit(value):
                     visibility_dict = {
                         f'btts_voice{i:02d}': gr.update(visible=i < value) for i in range(6)
                     }
                     return [value for value in visibility_dict.values()]
-                btts_voice00 = gr.Dropdown(list_tts, value='en-AU-WilliamNeural-Male', label = 'TTS Speaker 1', visible=True, interactive= True)
+                btts_voice00 = gr.Dropdown(list_tts, value='ru-RU-DmitryNeural-Male', label = 'TTS Speaker 1', visible=True, interactive= True)
                 btts_voice01 = gr.Dropdown(list_tts, value='en-CA-ClaraNeural-Female', label = 'TTS Speaker 2', visible=True, interactive= True)
                 btts_voice02 = gr.Dropdown(list_tts, value='en-GB-ThomasNeural-Male', label = 'TTS Speaker 3', visible=False, interactive= True)
                 btts_voice03 = gr.Dropdown(list_tts, value='en-GB-SoniaNeural-Female', label = 'TTS Speaker 4', visible=False, interactive= True)
@@ -924,7 +923,7 @@ with gr.Blocks(theme=theme) as demo:
 
 
                 with gr.Column():
-                      with gr.Accordion("Advanced Settings", open=False):
+                      with gr.Accordion("Расширенные настройки", open=False):
                           baudio_accelerate = gr.Slider(label = 'Max Audio acceleration', value=2.1, step=0.1, minimum=1.0, maximum=2.5, visible=True, interactive= True, info="Maximum acceleration for translated audio segments to avoid overlapping. A value of 1.0 represents no acceleration")
 
                           bAUDIO_MIX = gr.Dropdown(['Mixing audio with sidechain compression', 'Adjusting volumes and mixing audio'], value='Adjusting volumes and mixing audio', label = 'Audio Mixing Method', info="Mix original and translated audio files to create a customized, balanced output with two available mixing modes.")
@@ -1024,12 +1023,12 @@ with gr.Blocks(theme=theme) as demo:
                 )
 
 
-    with gr.Tab("Custom voice R.V.C. (Optional)"):
+    with gr.Tab("Переозвучка R.V.C"):
         with gr.Column():
-          with gr.Accordion("Get the R.V.C. Models", open=True):
-            url_links = gr.Textbox(label="URLs", value="",info="Automatically download the R.V.C. models from the URL. You can use links from HuggingFace or Drive, and you can include several links, each one separated by a comma. Example: https://huggingface.co/sail-rvc/yoimiya-jp/blob/main/model.pth, https://huggingface.co/sail-rvc/yoimiya-jp/blob/main/model.index", placeholder="urls here...", lines=1)
+          with gr.Accordion("Загрузить R.V.C. модель", open=True):
+            url_links = gr.Textbox(label="URLs", value="",info="Автоматически загрузит модель R.V.C. Вы можете использовать ссылки на модели на HuggingFace или Drive, так же можете добавить несколько ссылок используя запятую. Например: https://huggingface.co/sail-rvc/yoimiya-jp/blob/main/model.pth, https://huggingface.co/sail-rvc/yoimiya-jp/blob/main/model.index", placeholder="Ссылка на скачивание...", lines=1)
             download_finish = gr.HTML()
-            download_button = gr.Button("DOWNLOAD MODELS")
+            download_button = gr.Button("СКАЧАТЬ МОДЕЛИ")
 
             def update_models():
               models, index_paths = upload_model_list()
@@ -1044,11 +1043,11 @@ with gr.Blocks(theme=theme) as demo:
                 return [value for value in dict_changes.values()]
 
         with gr.Column():
-          with gr.Accordion("Replace voice: TTS to R.V.C.", open=False):
+          with gr.Accordion("Переозвучка: TTS в R.V.C.", open=False):
             with gr.Column(variant='compact'):
               with gr.Column():
                 gr.Markdown("### 1. To enable its use, mark it as enable.")
-                enable_custom_voice = gr.Checkbox(label="ENABLE", info="Check this to enable the use of the models.")
+                enable_custom_voice = gr.Checkbox(label="ВКЛЮЧИТЬ ПЕРЕОЗВУЧКУ", info="Отметьте чекбокс для включения функции переозвучки")
                 enable_custom_voice.change(custom_model_voice_enable, [enable_custom_voice], [])
 
                 gr.Markdown("### 2. Select a voice that will be applied to each TTS of each corresponding speaker and apply the configurations.")
